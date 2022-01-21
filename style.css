@@ -1,0 +1,20 @@
+circle {
+    fill-opacity:0.7
+}
+
+/* Categories */
+#winter-storm-freeze {
+    fill: #ccc
+}
+#drought-wildfire {
+    fill:#ffffd9
+}
+#flooding {
+    fill:#41b6c4
+}     
+#tropical-cyclone {
+    fill:#081d58
+}  
+#severe-storms {
+    fill:#c7e9b4
+}

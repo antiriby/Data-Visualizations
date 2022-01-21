@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment #1 Visualization</title>
+    
+    <!-- The following line references an external css file -->
+    <!-- It defines style rules for your page, and elements in your page -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <p>Briana Antiri</p>
+    <!-- Load external JS files -->
+    <!-- This is where you will do most of the 'work' for your applications -->
+    <script src="js/main.js"></script>
+
+    <svg width="1000" height="600" style="background-color:gray">
+        <!-- 2017 Timeline Setup -->
+        <text x="951" y="80" fill="red">2017</text>
+        <line x1="50" y1="150" x2="950" y2="150" stroke="black" stroke-width="5" />
+
+        <text x="41" y="55" fill="black">Jan</text>
+        <line x1="50" y1="60" x2="50" y2="80" stroke="black" stroke-width="1"/>
+        <text x="120.37" y="55" fill="black">Feb</text>
+        <line x1="128.37" y1="60" x2="128.37" y2="80" stroke="black" stroke-width="1"/>
+        <text x="183.48" y="55" fill="black">Mar</text>
+        <line x1="195.48" y1="60" x2="195.48" y2="80" stroke="black" stroke-width="1"/>
+        <text x="262.92" y="55" fill="black">Apr</text>
+        <line x1="271.92" y1="60" x2="271.92" y2="80" stroke="black" stroke-width="1"/>
+        <text x="332.89" y="55" fill="black">May</text>
+        <line x1="345.89" y1="60" x2="345.89" y2="80" stroke="black" stroke-width="1"/>
+        <text x="409.86" y="55" fill="black">Jun</text>
+        <line x1="419.86" y1="60" x2="419.86" y2="80" stroke="black" stroke-width="1"/>
+        <text x="488.30" y="55" fill="black">Jul</text>
+        <line x1="496.30" y1="60" x2="496.30" y2="80" stroke="black" stroke-width="1"/>
+        <text x="559.74" y="55" fill="black">Aug</text>
+        <line x1="572.74" y1="60" x2="572.74" y2="80" stroke="black" stroke-width="1"/>
+        <text x="637.17" y="55" fill="black">Sep</text>
+        <line x1="649.17" y1="60" x2="649.17" y2="80" stroke="black" stroke-width="1"/>
+        <text x="712.15" y="55" fill="black">Oct</text>
+        <line x1="723.15" y1="60" x2="723.15" y2="80" stroke="black" stroke-width="1"/>
+        <text x="789.59" y="55" fill="black">Nov</text>
+        <line x1="799.59" y1="60" x2="799.59" y2="80" stroke="black" stroke-width="1"/>
+        <text x="865.56" y="55" fill="black">Dec</text>
+        <line x1="873.56" y1="60" x2="873.56" y2="80" stroke="black" stroke-width="1"/>
+
+        <!--2017 Data-->
+        <circle id="tropical-cyclone" cx="639.32" cy="150" r="125"/> 
+        <circle id="severe-storm" cx="444.52" cy="150" r="12.5"/> 
+        <circle id="severe-storm" cx="365.61" cy="150" r="11"/> 
+        <circle id="severe-storm" cx="259.59" cy="150" r="10.5"/> 
+        <circle id="severe-storm" cx="210.27" cy="150" r="10.5"/> 
+        <circle id="severe-storm" cx="195.48" cy="150" r="9"/> 
+        <circle id="flooding" cx="331.10" cy="150" r="8.5"/> 
+        <circle id="flooding" cx="146.16" cy="150" r="7.5"/> 
+        <circle id="severe-storm" cx="99.32" cy="150" r="5.5"/> 
+
+        <!-- 2016 Timeline Setup -->
+        <text x="951" y="280" fill="red">2016</text>
+        <line x1="50" y1="300" x2="950" y2="300" stroke="black" stroke-width="3" />
+        
+        <text x="41" y="55" fill="black">Jan</text>
+        <line x1="50" y1="60" x2="50" y2="80" stroke="black" stroke-width="1"/>
+        <text x="120.37" y="55" fill="black">Feb</text>
+        <line x1="128.37" y1="60" x2="128.37" y2="80" stroke="black" stroke-width="1"/>
+        <text x="183.48" y="55" fill="black">Mar</text>
+        <line x1="195.48" y1="60" x2="195.48" y2="80" stroke="black" stroke-width="1"/>
+        <text x="262.92" y="55" fill="black">Apr</text>
+        <line x1="271.92" y1="60" x2="271.92" y2="80" stroke="black" stroke-width="1"/>
+        <text x="332.89" y="55" fill="black">May</text>
+        <line x1="345.89" y1="60" x2="345.89" y2="80" stroke="black" stroke-width="1"/>
+        <text x="409.86" y="55" fill="black">Jun</text>
+        <line x1="419.86" y1="60" x2="419.86" y2="80" stroke="black" stroke-width="1"/>
+        <text x="488.30" y="55" fill="black">Jul</text>
+        <line x1="496.30" y1="60" x2="496.30" y2="80" stroke="black" stroke-width="1"/>
+        <text x="559.74" y="55" fill="black">Aug</text>
+        <line x1="572.74" y1="60" x2="572.74" y2="80" stroke="black" stroke-width="1"/>
+        <text x="637.17" y="55" fill="black">Sep</text>
+        <line x1="649.17" y1="60" x2="649.17" y2="80" stroke="black" stroke-width="1"/>
+        <text x="712.15" y="55" fill="black">Oct</text>
+        <line x1="723.15" y1="60" x2="723.15" y2="80" stroke="black" stroke-width="1"/>
+        <text x="789.59" y="55" fill="black">Nov</text>
+        <line x1="799.59" y1="60" x2="799.59" y2="80" stroke="black" stroke-width="1"/>
+        <text x="865.56" y="55" fill="black">Dec</text>
+        <line x1="873.56" y1="60" x2="873.56" y2="80" stroke="black" stroke-width="1"/>
+    </svg>
+</body>
+</html>
