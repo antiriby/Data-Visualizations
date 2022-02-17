@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bad Air!</title>
+    <h1><em>Bad Air!</em>by Briana Antiri</h1>
+    <p>Data Resources: https://www.epa.gov/outdoor-air-quality-data/how-do-i-cite-data-and-graphics-obtained-airdata-website</p>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:;base64,iVBORwOKGO=" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>    
+    <!-- Add HTML content, SVG drawing area, ... -->
+    <div id="tooltip"></div>
+
+    <!-- <ul class="legend">
+        <li class="legend-btn" category="max-aqi"><span class="legend-symbol"></span>Max AQI</li>
+        <li class="legend-btn" category="percentile-aqi"><span class="legend-symbol"></span>90th Percentile AQI</li>
+        <li class="legend-btn" category="median-aqi"><span class="legend-symbol"></span>Median AQI</li>
+    </ul> -->
+
+    <div class='inline'>
+        <svg id="lineChartLegend"></svg>
+        <svg id="lineChart"></svg>
+    </div>
+    <div class='inline'>
+        <svg id="airLineChartLegend"></svg>
+        <svg id="airLineChart"></svg>
+    </div>
+    <div>
+        <svg id="percentageDaysLegend"></svg>
+        <svg id="aqiBarChart"></svg>
+    </div>
+    <div>
+        <svg id="percentageAirLegend"></svg>
+        <svg id="airBarChart"></svg>
+    </div>
+
+
+    <!-- D3 bundle -->
+    <script src="js/d3.v6.min.js"></script>
+
+    <!-- Our JS code - INCLUDING the new files-->
+    <script src="js/main.js"></script>
+    <script src="js/lineChart.js"></script> 
+    <script src="js/barChart.js"></script>
+
+
+</body>
+</html>
