@@ -14,13 +14,14 @@
 <body>    
     <!-- Add HTML content, SVG drawing area, ... -->
     <div id="tooltip"></div>
-
+    <div>
+        Start year: <input type="number" value="2016" min="2016" max="2020" id="start-year-input">
+    </div>
     <div class="chart-section">
         <div class='inline'>
             <svg id="lineChartLegend">
                 <text x="54" y="15" class="chart-title">Air Quality Indexes(AQI)</text>
                 <text x="120" y="45" class="chart-title">Per Year</text>
-
             </svg>
             <svg id="lineChart"></svg>
         </div>

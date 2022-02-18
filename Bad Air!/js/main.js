@@ -1,7 +1,7 @@
 
 console.log("Hello world");
 
-let data;
+let data, AQILineChart, AirLineChart;
 let hamCountyAQI = []
 let hamCountyAir = []
 let hamCountyDays = []
@@ -59,7 +59,7 @@ d3.csv('data/data.csv')
         var aqiLegendKeys = ["Max AQI", "90th Percentile AQI", "Median AQI"];
         var aqiColors = ["#E15759", "#76B7B2", "#ECD948"];
 
-        let AQILineChart = new LineChart({
+        AQILineChart = new LineChart({
             'parentElement': '#lineChart', 
             'containerHeight': 400, 
             'containerWidth': 700,
@@ -74,7 +74,7 @@ d3.csv('data/data.csv')
         var airLegendKeys = ["CO", "NO2", "Ozone", "PM2.5", "PM10", "SO2"];
         var airColors = d3.schemeTableau10.slice(4);
 
-        let AirLineChart = new LineChart({
+        AirLineChart = new LineChart({
             'parentElement': '#airLineChart',
             'containerHeight':400, 
             'containerWidth': 700, 
@@ -106,6 +106,21 @@ d3.csv('data/data.csv')
 .catch(error => {
     console.error('Error loading the data');
 });
+
+d3.select('#start-year-input').on('change', function() {
+    // Get selected year
+    const minYear = parseInt(d3.select(this).property('value'));
+  
+    // Filter dataset accordingly
+    let filteredData = data.filter(d => d.year >= minYear);
+  
+    // Update chart
+    AQILineChart.data = filteredData;
+    AirLineChart.updateVis();
+    AirLineChart.data = filteredData;
+    AirLineChart.updateVis();
+    console.log("updating charts");
+  });
 
 
 
