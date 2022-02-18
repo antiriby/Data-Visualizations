@@ -1,79 +1,91 @@
 class LineChart {
 
-    constructor(_config, _data, _legendSVG, _legendKeys, _colorScheme) {
-      this.config = {
-        parentElement: _config.parentElement,
-        containerWidth: _config.containerWidth || 300,
-        containerHeight: _config.containerHeight || 90,
-        margin: { top: 10, bottom: 30, right: 50, left: 50 },
-        tooltipPadding: _config.tooltipPadding || 15
-      }
-     
-      this.data = _data;  
-      this.legendSVG = d3.select(_legendSVG)
-                          .attr('height', 300);
-      this.legendKeys = _legendKeys;
-      this.colorScheme = _colorScheme;
-      this.initVis();
+  constructor(_config, _data, _title, _legendSVG, _legendKeys, _colorScheme) {
+    this.config = {
+      parentElement: _config.parentElement,
+      containerWidth: _config.containerWidth || 300,
+      containerHeight: _config.containerHeight || 90,
+      margin: { top: 10, bottom: 50, right: 50, left: 50 },
+      tooltipPadding: _config.tooltipPadding || 15
     }
-  
-    initVis() {
-        
-      let vis = this; 
-  
-      vis.width = vis.config.containerWidth - vis.config.margin.left - vis.config.margin.right;
-      vis.height = vis.config.containerHeight - vis.config.margin.top - vis.config.margin.bottom;
-
-      vis.groups = d3.groups(vis.data, d => d.type);
-
-      vis.xValue = d => d.year;
-      vis.yValue = d => d.value;
-  
-      //setup scales
-      vis.xScale = d3.scaleLinear()
-          .domain(d3.extent(vis.data, vis.xValue)) //d3.min(vis.data, d => d.year), d3.max(vis.data, d => d.year) );
-          .range([0, vis.width]);
-      console.log("XScale is setup");
     
+    this.data = _data;  
+    this.title = _title;
+    this.legendSVG = d3.select(_legendSVG)
+                        .attr('height', 300);
+    this.legendKeys = _legendKeys;
+    this.colorScheme = _colorScheme;
+    this.initVis();
+  }
+
+  initVis() {
       
-      vis.yScale = d3.scaleLinear()
-          .domain(d3.extent(vis.data, vis.yValue))
-          .range([vis.height, 0])
-          .nice(); 
+    let vis = this; 
 
-        console.log("YScale is setup");
+    vis.width = vis.config.containerWidth - vis.config.margin.left - vis.config.margin.right;
+    vis.height = vis.config.containerHeight - vis.config.margin.top - vis.config.margin.bottom;
 
-      // Define size of SVG drawing area
-      vis.svg = d3.select(vis.config.parentElement)
-          .attr('width', vis.config.containerWidth)
-          .attr('height', vis.config.containerHeight);
-  
-      // Append group element that will contain our actual chart (see margin convention)
-      vis.chart = vis.svg.append('g')
-          .attr('transform', `translate(${vis.config.margin.left},${vis.config.margin.top})`);
-  
-      // Initialize axes
-      vis.xAxis = d3.axisBottom(vis.xScale);
-      vis.yAxis = d3.axisLeft(vis.yScale);
-  
-      // Append x-axis group and move it to the bottom of the chart
-      vis.xAxisG = vis.chart.append('g')
-          .attr('class', 'axis x-axis')
-          .attr('transform', `translate(0,${vis.height})`)
-          .call(vis.xAxis);
-      
-      // Append y-axis group
-      vis.yAxisG = vis.chart.append('g')
-          .attr('class', 'axis y-axis')
-          .call(vis.yAxis); 
-      console.log("y-axis setup");
-  
- 
-    // Create lines
+    // Define size of SVG drawing area
+    vis.svg = d3.select(vis.config.parentElement)
+        .attr('width', vis.config.containerWidth)
+        .attr('height', vis.config.containerHeight);
 
-    vis.colorPalette = d3.scaleOrdinal(d3.schemeTableau10);
-    vis.colorPalette.domain(vis.legendKeys);
+    // Append group element that will contain our actual chart (see margin convention)
+    vis.chart = vis.svg.append('g')
+        .attr('transform', `translate(${vis.config.margin.left},${vis.config.margin.top})`);
 
+    // Create groups based on data type
+    vis.groups = d3.groups(vis.data, d => d.type);
+
+    //setup scales
+    vis.xValue = d => d.year;
+    vis.yValue = d => d.value;
+
+    vis.xScale = d3.scaleLinear()
+        .domain(d3.extent(vis.data, vis.xValue))
+        .range([0, vis.width]);
+    console.log("XScale is setup");
+  
+    
+    vis.yScale = d3.scaleLinear()
+        .domain(d3.extent(vis.data, vis.yValue))
+        .range([vis.height, 0])
+        .nice(); 
+
+    console.log("YScale is setup");
+
+    // Initialize axes
+    vis.xAxis = d3.axisBottom(vis.xScale);
+    vis.yAxis = d3.axisLeft(vis.yScale);
+
+    // Append x-axis group and move it to the bottom of the chart
+    vis.xAxisG = vis.chart.append('g')
+        .attr('class', 'axis x-axis')
+        .attr('transform', `translate(0,${vis.height})`)
+        .call(vis.xAxis)
+        .append("text")
+          .attr("font-size", "13px")
+          .attr("y", vis.height - 280)
+          .attr("x", vis.width - 270)
+          .attr("text-anchor", "end")
+          .attr("stroke", "black")
+          .text("Year");
+    
+    // Append y-axis group
+    vis.yAxisG = vis.chart.append('g')
+        .attr('class', 'axis y-axis')
+        .call(vis.yAxis)
+        .append("text")
+          .attr("font-size", "13px")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 30)
+          .attr("dy", "-4.8em")
+          .attr("text-anchor", "end")
+          .attr("stroke", "black")
+          .text("Percentage");
+
+
+    // Set colors to be used for chart and legend
     vis.colors = d3.scaleOrdinal()
         .domain(vis.legendKeys)
         .range(vis.colorScheme);
@@ -82,23 +94,23 @@ class LineChart {
 
     // Add one dot in the legend for each name.
     var size = 20
-    vis.legendSVG.selectAll("mydots")
+    vis.legendSVG.selectAll("legendSquares")
       .data(vis.legendKeys)
       .enter()
       .append("rect")
         .attr("x", 100)
-        .attr("y", function(d,i){ return  20 + i*(size+5)}) // 20 is where the first dot appears. 25 is the distance between dots
+        .attr("y", function(d,i){ return  80 + i*(size+5)}) 
         .attr("width", size)
         .attr("height", size)
         .style("fill", d => vis.colors(d))
 
     // Add one dot in the legend for each name.
-    vis.legendSVG.selectAll("mylabels")
+    vis.legendSVG.selectAll("legendLabels")
       .data(vis.legendKeys)
       .enter()
       .append("text")
         .attr("x", 100 + size*1.2)
-        .attr("y", function(d,i){ return 20 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
+        .attr("y", function(d,i){ return 85 + i*(size+5) + (size/2)}) 
         .style("fill", function(d){ 
           return vis.colors(d)
       })
@@ -110,6 +122,7 @@ class LineChart {
       .data(data)
       .join("path");
     
+    // Draw lines 
     vis.chart.selectAll(".line")
       .data(vis.groups)
       .join("path")
@@ -134,11 +147,10 @@ class LineChart {
     vis.tooltip.append('text');
 
     this.updateVis();
-
-}
+  }
   
     //leave this empty for now
-   updateVis() { 
+  updateVis() { 
 
   //   vis.chart.selectAll('path')
   //     .data([])
@@ -275,4 +287,4 @@ class LineChart {
     }
   
     
-  }
+}

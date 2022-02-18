@@ -2,8 +2,11 @@
 <html>
 <head>
     <title>Bad Air!</title>
-    <h1><em>Bad Air!</em>by Briana Antiri</h1>
-    <p>Data Resources: https://www.epa.gov/outdoor-air-quality-data/how-do-i-cite-data-and-graphics-obtained-airdata-website</p>
+    <h1><em>Bad Air!</em></h1>
+    <h2>by Briana Antiri</h2>
+    <h3>Data Resource:</h3>
+    <p>US Environmental Protection Agency. Air Quality System Data Mart </p>
+    <p> available via https://www.epa.gov/outdoor-air-quality-data. Accessed February 06, 2022</p>
     <meta charset="UTF-8">
     <link rel="icon" href="data:;base64,iVBORwOKGO=" />
     <link rel="stylesheet" href="css/style.css">
@@ -12,27 +15,39 @@
     <!-- Add HTML content, SVG drawing area, ... -->
     <div id="tooltip"></div>
 
-    <!-- <ul class="legend">
-        <li class="legend-btn" category="max-aqi"><span class="legend-symbol"></span>Max AQI</li>
-        <li class="legend-btn" category="percentile-aqi"><span class="legend-symbol"></span>90th Percentile AQI</li>
-        <li class="legend-btn" category="median-aqi"><span class="legend-symbol"></span>Median AQI</li>
-    </ul> -->
+    <div class="chart-section">
+        <div class='inline'>
+            <svg id="lineChartLegend">
+                <text x="54" y="15" class="chart-title">Air Quality Indexes(AQI)</text>
+                <text x="120" y="45" class="chart-title">Per Year</text>
 
-    <div class='inline'>
-        <svg id="lineChartLegend"></svg>
-        <svg id="lineChart"></svg>
+            </svg>
+            <svg id="lineChart"></svg>
+        </div>
+        <div class='inline'>
+            <svg id="airLineChartLegend">
+                <text x="20" y="15" class="chart-title">Percentage of Air Pollutants</text>
+                <text x="95" y="45" class="chart-title">Per Year</text>
+            </svg>
+            <svg id="airLineChart"></svg>
+        </div>
     </div>
-    <div class='inline'>
-        <svg id="airLineChartLegend"></svg>
-        <svg id="airLineChart"></svg>
-    </div>
-    <div>
-        <svg id="percentageDaysLegend"></svg>
-        <svg id="aqiBarChart"></svg>
-    </div>
-    <div>
-        <svg id="percentageAirLegend"></svg>
-        <svg id="airBarChart"></svg>
+
+    <div class="chart-section">
+        <div class='inline'>
+            <svg id="percentageDaysLegend" height="350">
+                <text x="10" y="15" class="chart-title">Percentage of AQI Categories</text>
+                <text x="120" y="45" class="chart-title">in 2021</text>
+            </svg>
+            <svg id="aqiBarChart"></svg>
+        </div>
+        <div class="inline">
+            <svg id="percentageAirLegend" height="350">
+                <text x="30" y="15" class="chart-title">Percentage of Air Pollutants</text>
+                <text x="120" y="45" class="chart-title">in 2021</text> 
+            </svg>
+            <svg id="airBarChart"></svg>
+        </div>
     </div>
 
 

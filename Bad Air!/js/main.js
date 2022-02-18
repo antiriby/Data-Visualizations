@@ -38,12 +38,12 @@ d3.csv('data/data.csv')
                 hamCountyAQI.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': d.percentileAQI, 'type': "percentileAQI" });
                 hamCountyAQI.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': d.medianAQI, 'type': "medianAQI" });
 
-                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysCO / d.daysWithAQI) * 100, 'type': "daysCO"});
-                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysNO2 / d.daysWithAQI) * 100, 'type': "daysNO2"});
-                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysOzone / d.daysWithAQI) * 100, 'type': "daysOzone"});
-                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysPM2_5 / d.daysWithAQI) * 100, 'type': "daysPM2_5"});
-                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysPM10 / d.daysWithAQI) * 100, 'type': "daysPM10"});
-                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysSO2 / d.daysWithAQI) * 100, 'type': "daysSO2"});
+                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysCO / d.daysWithAQI) * 100, 'type': "CO"});
+                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysNO2 / d.daysWithAQI) * 100, 'type': "NO2"});
+                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysOzone / d.daysWithAQI) * 100, 'type': "Ozone"});
+                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysPM2_5 / d.daysWithAQI) * 100, 'type': "PM2_5"});
+                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysPM10 / d.daysWithAQI) * 100, 'type': "PM10"});
+                hamCountyAir.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.daysSO2 / d.daysWithAQI) * 100, 'type': "SO2"});
 
                 hamCountyDays.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.goodDays / d.daysWithAQI) * 100, 'type': "goodDays"});
                 hamCountyDays.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': (d.moderateDays / d.daysWithAQI) * 100, 'type': "moderateDays"});
@@ -63,9 +63,13 @@ d3.csv('data/data.csv')
             'parentElement': '#lineChart', 
             'containerHeight': 400, 
             'containerWidth': 700,
-            }, hamCountyAQI, "#lineChartLegend", aqiLegendKeys, aqiColors);
+            }, hamCountyAQI, 
+            "Air Quality Indexes per Year",
+            "#lineChartLegend", 
+            aqiLegendKeys, 
+            aqiColors);
 
-        console.log("first chart done");
+        console.log("first chart complete");
 
         var airLegendKeys = ["CO", "NO2", "Ozone", "PM2.5", "PM10", "SO2"];
         var airColors = d3.schemeTableau10.slice(4);
@@ -74,8 +78,12 @@ d3.csv('data/data.csv')
             'parentElement': '#airLineChart',
             'containerHeight':400, 
             'containerWidth': 700, 
-            }, hamCountyAir, "#airLineChartLegend", airLegendKeys, airColors);
-        console.log("second chart done");
+            }, hamCountyAir, 
+            "Percentage of Major Air Pollutants per Year", 
+            "#airLineChartLegend", 
+            airLegendKeys, airColors);
+
+        console.log("second chart complete");
 
         let AQIBarChart = new BarChart({
             'parentElement': "#aqiBarChart", 
@@ -83,7 +91,7 @@ d3.csv('data/data.csv')
             'containterWidth': 600, 
         }, hamCountyDays)
 
-        console.log("third chart done");
+        console.log("third chart complete");
 
         let AQIAirChart = new BarChart({
             'parentElement': "#airBarChart",
@@ -91,9 +99,9 @@ d3.csv('data/data.csv')
             'containerWidth': 600,
         }, hamCountyAir)
 
-        console.log("fourth chart done")
+        console.log("fourth chart complete")
 
-        console.log("If you're seeing this, then that means it is working!");
+        console.log("All chart visualizations have been created!");
 })
 .catch(error => {
     console.error('Error loading the data');

@@ -52,10 +52,20 @@
     background: #ECD948;
   }
 
-.inline-block-child {
+.inline{
   display: inline-block;
 }
 
 .bar {
   fill: steelblue;
+}
+
+.chart-section{
+  margin-top: 70px;
+  margin-bottom: 100px;
+}
+
+.chart-title {
+  text-align:center;
+  font: bold 20px sans-serif;
 }
