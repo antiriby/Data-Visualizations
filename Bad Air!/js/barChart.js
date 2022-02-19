@@ -28,17 +28,17 @@ class BarChart{
         vis.yValue = function(d) {
             return d.value;
         }
-        
-        vis.yScale = d3.scaleLinear()
-	        .domain([0,100]) 
-	        .range([vis.height, 0]);
-        console.log("yscale set");
 
         vis.xScale = d3.scaleBand()
-            .domain(vis.data.map(vis.xValue)) //list of the month field in the objects in the data array
+            .domain(vis.data.map(vis.xValue)) 
             .range([0, vis.width])
             .paddingInner(0.2);
         console.log("xscale set");
+
+        vis.yScale = d3.scaleLinear()
+            .domain([0,100]) 
+            .range([vis.height, 0]);
+        console.log("yscale set");
 
         // Initialize axes
         vis.xAxis = d3.axisBottom(vis.xScale);
@@ -68,8 +68,8 @@ class BarChart{
             
         vis.svg.append("text")
             .attr("font-size", "13px")
-            .attr("y", vis.height + 35)
             .attr("x", vis.width + 120)
+            .attr("y", vis.height + 35)
             .attr("text-anchor", "end")
             .attr("stroke", "black")
             .text("Category");

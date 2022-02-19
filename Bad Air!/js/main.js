@@ -1,6 +1,3 @@
-
-console.log("Hello world");
-
 let data, AQILineChart, AirLineChart;
 let hamCountyAQI = []
 let hamCountyAir = []
@@ -32,8 +29,6 @@ d3.csv('data/data.csv')
         data.filter(d => d.state == "Ohio").filter( d => d.county == "Hamilton").forEach(
             d => {
 
-                //TODO: add if statment to neglect values that are 0 for all different types
-
                 hamCountyAQI.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': d.maxAQI, 'type': "maxAQI" });
                 hamCountyAQI.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': d.percentileAQI, 'type': "percentileAQI" });
                 hamCountyAQI.push({'state': d.state, 'county': d.county, 'year': d.year, 'value': d.medianAQI, 'type': "medianAQI" });
@@ -54,7 +49,7 @@ d3.csv('data/data.csv')
             }
         )
 
-        console.log(hamCountyDays);
+        // Setup charts and color schemes
 
         var aqiLegendKeys = ["Max AQI", "90th Percentile AQI", "Median AQI"];
         var aqiColors = ["#E15759", "#76B7B2", "#ECD948"];
@@ -110,16 +105,20 @@ d3.csv('data/data.csv')
 d3.select('#start-year-input').on('change', function() {
     // Get selected year
     const minYear = parseInt(d3.select(this).property('value'));
+    console.log(minYear);
   
     // Filter dataset accordingly
-    let filteredData = data.filter(d => d.year >= minYear);
+    let filteredData = hamCountyAQI.filter(d => d.year >= minYear).filter(d => d.state == "Ohio").filter( d => d.county == "Hamilton");
+
+    console.log("updating charts");
+    console.log(filteredData);
   
     // Update chart
     AQILineChart.data = filteredData;
     AirLineChart.updateVis();
     AirLineChart.data = filteredData;
     AirLineChart.updateVis();
-    console.log("updating charts");
+
   });
 
 
